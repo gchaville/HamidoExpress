@@ -17,3 +17,5 @@ class Driver extends User
         $this->drivingyear = $y;
     }
 }
+
+?>

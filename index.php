@@ -47,17 +47,17 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <form class="navbar-form navbar-left">
+                                    <form class="navbar-form navbar-left" action="scripts/login.php" method="post">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" placeholder="Nom d'utilisateur">
-                                            <input type="password" class="form-control" placeholder="Mot de passe" minlength="8">
+                                            <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur">
+                                            <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" minlength="8">
                                         </div>
-                                        <button type="submit" class="btn btn-default">Se connecter</button>
+                                        <input type="submit" class="btn btn-default" value="Se connecter">
                                     </form>
                                 </ul>
                             </li>
                             <li><a href="#">Inscription</a></li>
-                            <li class="dropdown">
+                            <!--li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compte<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="#">Profil</a></li>
@@ -66,7 +66,7 @@
                                     <li role="separator" class="divider"></li>
                                     <li><a href="#">Déconnexion</a></li>
                                 </ul>
-                            </li>
+                            </li-->
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

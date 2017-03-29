@@ -1,10 +1,10 @@
 <?php
 include("connect.php");
 
-if(isset($_POST['UserId']) && isset($_POST['Password'])) {
+if(isset($_POST['username']) && isset($_POST['pwd'])) {
 
-    $Username = addslashes($_POST['UserId']);
-    $Password = addslashes($_POST['Password']);
+    $Username = addslashes($_POST['username']);
+    $Password = addslashes($_POST['pwd']);
 
     $STMT=$PDO->query("SELECT *
 								FROM `User`

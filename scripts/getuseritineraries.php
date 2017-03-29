@@ -1,9 +1,9 @@
 <?php
 
-if(isset($_POST['UserId']) && isset($_POST['ItineraryId'])) {
+if(isset($_POST['username']) && isset($_POST['itinerary'])) {
 
-    $Username = addslashes($_POST['UserId']);
-    $ItineraryID = addslashes($_POST['ItineraryId']);
+    $Username = addslashes($_POST['username']);
+    $ItineraryID = addslashes($_POST['itinerary']);
 
     $STMT=$PDO->query("SELECT *
 								FROM `Itinerary_supports_User`
