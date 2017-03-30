@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>HamidoExpress - Inscription</title>
-        <link rel="stylesheet" href="../css/styles.css">
+        <link rel="stylesheet" href="css/styles.css">
 
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-migrate-3.0.0.min.js" integrity="sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw=" crossorigin="anonymous"></script>
@@ -30,7 +30,7 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#">
-                            <img alt="Brand" src="../images/travel-express.jpg" width="60" height="30">
+                            <img alt="Brand" src="images/travel-express.jpg" width="60" height="30">
                         </a>
                     </div>
 
@@ -44,7 +44,7 @@
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion<span class="caret"></span></a>
                                 <ul class="dropdown-menu">
-                                    <form class="navbar-form navbar-left">
+                                    <form class="navbar-form navbar-left" action="scripts/login.php" method="post">
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Nom d'utilisateur">
                                             <input type="password" class="form-control" placeholder="Mot de passe" minlength="8">
@@ -53,7 +53,7 @@
                                     </form>
                                 </ul>
                             </li>
-                            <li class="active"><a href="#">Inscription</a></li>
+                            <li class="active"><a href="inscription.php">Inscription</a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -62,7 +62,7 @@
         <!--=======content================================-->
         <section id="content">
             <div class="col-md-4">
-                <form data-toggle="validator" role="form">
+                <form data-toggle="validator" role="form" action="scripts/adduser.php" method="post"">
                     <div class="form-group">
                         <label for="inputFirstName" class="control-label">Prémon</label>
                         <input type="text" class="form-control" id="inputFirstName" placeholder="Prénom" required>
@@ -74,9 +74,20 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="inputDOB" class="control-label">Date de naissance (majeur seulement)</label>
+                        <input type="date" class="form-control" id="inputDOB" placeholder="AAAA-MM-JJ" data-error="Entrez une date de naissance valide!" max="1999-01-01" required>
+                    </div>
+
+                    <div class="form-group">
                         <label for="inputEmail" class="control-label">Courriel</label>
                         <input type="email" class="form-control" id="inputEmail" placeholder="exemple@gmail.com" data-error="Entrez une adresse électronique valide!" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="inputAddress" class="control-label">Adresse</label>
+                        <textarea class="form-control" rows="5" id="inputAddress" data-error="Entrez une adresse valide!" placeholder="Adresse postale"></textarea>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="inputPhone" class="control-label">Numéro de téléphone</label>
