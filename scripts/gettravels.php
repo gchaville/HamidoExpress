@@ -6,9 +6,10 @@ if(isset($_POST['departure']) && isset($_POST['arrival'])) {
     $Departure = addslashes($_POST['departure']);
     $Arrival = addslashes($_POST['arrival']);
 
-    $STMT = $PDO->query("SELECT * FROM  `Travel`
-                          INNER JOIN  (SELECT * FROM Itinerary WHERE Departure = ".$Departure." AND Arrival = ".$Arrival.") i
-                          ON Travel.ItinId = i.Id
+    $STMT = $PDO->query("SELECT * FROM  `travel`
+                          INNER JOIN  itinerary
+                          ON travel.Itin = itinerary.Id
+                          WHERE itinerary.Departure = '$Departure' AND itinerary.Arrival = '$Arrival'
                           ORDER BY Date_Departure ASC;");
     $r = array();
 

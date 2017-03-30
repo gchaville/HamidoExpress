@@ -76,12 +76,12 @@
         <section id="content">
             <form class="form-inline departure-search">
                 <label class="sr-only" for="departure">Start</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="departure" placeholder="Ville de départ">
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="departure" name="departure" placeholder="Ville de départ">
 
                 <span class="glyphicon glyphicon-chevron-right"></span></span>
 
                 <label class="sr-only" for="arrival">End</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrival" placeholder="Ville d'arrivée">
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrival" name="arrival" placeholder="Ville d'arrivée">
 
                 <button type="submit" class="btn btn-primary search-button">Chercher</button>
 
