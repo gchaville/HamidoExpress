@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Base de données :  `bd_hamidoexpress`
 --
+CREATE DATABASE IF NOT EXISTS `bd_hamidoexpress` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `bd_hamidoexpress`;
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,8 @@ CREATE TABLE `travel` (
 
 CREATE TABLE `users` (
   `Username` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `First_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `First_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,  
+`Last_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Date_of_birth` date NOT NULL,
   `Address` char(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Mail` char(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
