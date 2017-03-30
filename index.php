@@ -75,25 +75,22 @@
         <!--=======content================================-->
         <section id="content">
             <form class="form-inline departure-search">
-                <label class="sr-only" for="inlineFormInput">Start</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Ville de départ">
+                <label class="sr-only" for="departure">Start</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="departure" placeholder="Ville de départ">
 
                 <span class="glyphicon glyphicon-chevron-right"></span></span>
 
-                <label class="sr-only" for="inlineFormInput">End</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Ville d'arrivée">
+                <label class="sr-only" for="arrival">End</label>
+                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrival" placeholder="Ville d'arrivée">
 
-                <button type="submit" class="btn btn-primary">Chercher</button>
+                <button type="submit" class="btn btn-primary search-button">Chercher</button>
+
             </form>
 
             <br><br>
 
             <ul class="list-group departures">
-                <li class="list-group-item">Depart 1</li>
-                <li class="list-group-item">Depart 2</li>
-                <li class="list-group-item">Depart 3</li>
-                <li class="list-group-item">Depart 4</li>
-                <li class="list-group-item">Depart 5</li>
+
             </ul>
 
             <nav aria-label="Page navigation">
