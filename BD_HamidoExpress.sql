@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 30 Mars 2017 à 18:20
+-- Généré le :  Jeu 30 Mars 2017 à 19:18
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -42,6 +42,17 @@ CREATE TABLE `driver` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `drivers_supports_travel`
+--
+
+CREATE TABLE `drivers_supports_travel` (
+  `DriverId` int(5) NOT NULL,
+  `TravelId` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `itinerary`
 --
 
@@ -50,6 +61,17 @@ CREATE TABLE `itinerary` (
   `Departure` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Arrival` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Price` int(3) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `itinerary_supports_travel`
+--
+
+CREATE TABLE `itinerary_supports_travel` (
+  `ItinId` int(5) NOT NULL,
+  `TravelId` int(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -69,12 +91,23 @@ CREATE TABLE `travel` (
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `travel_supports_user`
+--
+
+CREATE TABLE `travel_supports_user` (
+  `TravelId` int(5) NOT NULL,
+  `UserId` int(5) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
 CREATE TABLE `users` (
   `Username` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `First_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,  
+  `First_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
 `Last_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Date_of_birth` date NOT NULL,
   `Address` char(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
