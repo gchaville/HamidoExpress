@@ -50,7 +50,7 @@
                                     <form class="navbar-form navbar-left" action="scripts/login.php" method="post">
                                         <div class="form-group">
                                             <input type="text" class="form-control" name="username" placeholder="Nom d'utilisateur">
-                                            <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" minlength="8">
+                                            <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" minlength="6">
                                         </div>
                                         <input type="submit" class="btn btn-default" value="Se connecter">
                                     </form>
