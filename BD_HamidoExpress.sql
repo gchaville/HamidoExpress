@@ -106,14 +106,14 @@ CREATE TABLE `travel_supports_user` (
 --
 
 CREATE TABLE `users` (
-  `Username` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `First_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-`Last_name` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `First_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Last_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Date_of_birth` date NOT NULL,
-  `Address` char(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Mail` char(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Phone` int(12) NOT NULL,
-  `Pass_word` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `Address` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Mail` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Pass_word` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
