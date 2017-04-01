@@ -30,7 +30,7 @@ USE `bd_hamidoexpress`;
 
 CREATE TABLE `driver` (
   `Id` int(5) NOT NULL,
-  `Username` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Username` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Driving_Year` int(20) NOT NULL,
   `Nb_passenger_total` int(2) NOT NULL,
   `Smoking` tinyint(1) NOT NULL,
@@ -42,36 +42,14 @@ CREATE TABLE `driver` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `drivers_supports_travel`
---
-
-CREATE TABLE `drivers_supports_travel` (
-  `DriverId` int(5) NOT NULL,
-  `TravelId` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `itinerary`
 --
 
 CREATE TABLE `itinerary` (
   `Id` int(5) NOT NULL,
-  `Departure` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Arrival` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Departure` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Arrival` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Price` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `itinerary_supports_travel`
---
-
-CREATE TABLE `itinerary_supports_travel` (
-  `ItinId` int(5) NOT NULL,
-  `TravelId` int(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -85,7 +63,7 @@ CREATE TABLE `travel` (
   `Date_Departure` date NOT NULL,
   `Driver_user` int(5) NOT NULL,
   `Itin` int(5) NOT NULL,
-  `Nb_passenger` char(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `Nb_passenger` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -106,14 +84,15 @@ CREATE TABLE `travel_supports_user` (
 --
 
 CREATE TABLE `users` (
+  `Id` int(5) NOT NULL,
   `Username` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `First_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Last_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+`Last_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Date_of_birth` date NOT NULL,
   `Address` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Mail` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Phone` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Pass_word` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
+  `Phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Pass_word` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -145,7 +124,7 @@ ALTER TABLE `travel`
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`Username`);
+  ADD PRIMARY KEY (`Id`, `Username`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -155,17 +134,22 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `driver`
 --
 ALTER TABLE `driver`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 --
 -- AUTO_INCREMENT pour la table `itinerary`
 --
 ALTER TABLE `itinerary`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 --
 -- AUTO_INCREMENT pour la table `travel`
 --
 ALTER TABLE `travel`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
+--
+-- AUTO_INCREMENT pour la table `users`
+--
+ALTER TABLE `users`
+  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
