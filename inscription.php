@@ -65,44 +65,44 @@
                 <form data-toggle="validator" role="form" action="scripts/adduser.php" method="post"">
                     <div class="form-group">
                         <label for="inputFirstName" class="control-label">Prémon</label>
-                        <input type="text" class="form-control" id="inputFirstName" placeholder="Prénom" required>
+                        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Prénom" required>
                     </div>
 
                     <div class="form-group">
                         <label for="inputLastName" class="control-label">Nom</label>
-                        <input type="text" class="form-control" id="inputLastName" placeholder="Nom" required>
+                        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Nom" required>
                     </div>
 
                     <div class="form-group">
                         <label for="inputDOB" class="control-label">Date de naissance (majeur seulement)</label>
-                        <input type="date" class="form-control" id="inputDOB" placeholder="AAAA-MM-JJ" data-error="Entrez une date de naissance valide!" max="1999-01-01" required>
+                        <input type="date" class="form-control" id="dob" name="dob" placeholder="AAAA-MM-JJ" data-error="Entrez une date de naissance valide!" max="1999-01-01" required>
                     </div>
 
                     <div class="form-group">
                         <label for="inputEmail" class="control-label">Courriel</label>
-                        <input type="email" class="form-control" id="inputEmail" placeholder="exemple@gmail.com" data-error="Entrez une adresse électronique valide!" required>
+                        <input type="email" class="form-control" id="mail" name="mail" placeholder="exemple@gmail.com" data-error="Entrez une adresse électronique valide!" required>
                     </div>
 
                     <div class="form-group">
                         <label for="inputAddress" class="control-label">Adresse</label>
-                        <textarea class="form-control" rows="5" id="inputAddress" data-error="Entrez une adresse valide!" placeholder="Adresse postale"></textarea>
+                        <textarea class="form-control" rows="5" id="address" name="address" data-error="Entrez une adresse valide!" placeholder="Adresse postale"></textarea>
                     </div>
 
 
                     <div class="form-group">
                         <label for="inputPhone" class="control-label">Numéro de téléphone</label>
-                        <input type="text" pattern="^\d{3}-?\d{3}-?\d{4}$" class="form-control" id="inputPhone" placeholder="555-555-5555" required>
+                        <input type="text" pattern="^\d{3}-?\d{3}-?\d{4}$" class="form-control" id="phone" name="phone" placeholder="555-555-5555" required>
                     </div>
 
                     <div class="form-group">
                         <label for="inputUsername" class="control-label">Nom d'utilisateur</label>
-                        <input type="text" pattern="^[_A-z0-9]{6,}$" maxlength="20" class="form-control" id="inputUsername" placeholder="Nom d'utilisateur" required>
+                        <input type="text" pattern="^[_A-z0-9]{6,}$" maxlength="20" class="form-control" id="username" name="username" placeholder="Nom d'utilisateur" required>
                         <div class="help-block with-errors">Le nom doit contenir de 6 à 20 caractères (a-z, 0-9).</div>
                     </div>
 
                     <div class="form-group">
                         <label for="inputPassword" class="control-label">Mot de passe</label>
-                        <input type="password" data-minlength="6" class="form-control" id="inputPassword" placeholder="Mot de passe" required>
+                        <input type="password" data-minlength="6" class="form-control" id="pwd" name="pwd" placeholder="Mot de passe" required>
                         <div class="help-block with-errors">Le mot de passe doit contenir au moins 6 caractères.</div>
                     </div>
 
