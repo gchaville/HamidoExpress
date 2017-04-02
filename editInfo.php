@@ -2,10 +2,6 @@
 // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
 session_start ();
 
-echo "<p>Votre login est <b>".$_SESSION['username']."</b> et votre mot de passe est <b>".$_SESSION['pwd']."</b>.</p>";
-
-
-
 $member_page = "<!DOCTYPE html>
 <html>
     <head>
@@ -73,9 +69,9 @@ $member_page = "<!DOCTYPE html>
                             <li class=\"dropdown\">
                                 <a href=\"#\" class=\"dropdown-toggle\" data-toggle=\"dropdown\" role=\"button\" aria-haspopup=\"true\" aria-expanded=\"false\">Compte<span class=\"caret\"></span></a>
                                 <ul class=\"dropdown-menu\">
-                                    <li><a href=\"#\">Profil</a></li>
-                                    <li><a href=\"#\">Historique</a></li>
-                                    <li><a href=\"editInfo.php\">Paramètres</a></li>
+                                    <li><a href=\"page_member.php\">Profil</a></li>
+                                    <li><a href=\"userhistoric.php\">Historique</a></li>
+                                    <li class='active'><a href=\"#\">Paramètres</a></li>
                                     <li role=\"separator\" class=\"divider\"></li>
                                     <li><a href=\"scripts/logout.php\">Déconnexion</a></li>
                                 </ul>

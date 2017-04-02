@@ -50,14 +50,14 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#">Accueil</a></li>
-                    <li class="active"><a href="#">Départs</a></li>
+                    <li><a href="#">Départs</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compte<span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="page_member.php">Profil</a></li>
-                            <li><a href="#">Historique</a></li>
+                            <li class="active"><a href="#">Historique</a></li>
                             <li><a href='editInfo.php'>Paramètres</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="scripts/logout.php">Déconnexion</a></li>
@@ -88,7 +88,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
             $Password = addslashes($_SESSION['pwd']);
 
             include("scripts/connect.php");
-            echo "<p>Votre login est <b>".$Username."</b> et votre mot de passe est <b>".$Password."</b>.</p>";
 
             $STMT=$PDO->query("SELECT *
 								FROM `users`

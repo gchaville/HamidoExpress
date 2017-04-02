@@ -49,7 +49,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li><a href="#">Accueil</a></li>
-                    <li class="active"><a href="#">Départs</a></li>
+                    <li><a href="#">Départs</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -76,7 +76,6 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
             $Password = addslashes($_SESSION['pwd']);
 
             include("scripts/connect.php");
-            echo "<h1>Bienvenue, <b>".$Username."</b> et votre mot de passe est <b>".$Password."</b>.</h1>";
 
             $STMT=$PDO->query("SELECT *
 								FROM `users`
