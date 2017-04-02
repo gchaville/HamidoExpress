@@ -6,24 +6,24 @@ session_start ();
 
 $member_page = "<!DOCTYPE html>
 <html>
-<head>
-    <meta charset=\"utf-8\">
-    <title>HamidoExpress - Compte Test</title>
-    <link rel=\"stylesheet\" href=\"css/styles.css\">
-
-    <script src=\"https://code.jquery.com/jquery-3.1.1.min.js\" integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\" crossorigin=\"anonymous\"></script>
-    <script src=\"https://code.jquery.com/jquery-migrate-3.0.0.min.js\" integrity=\"sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw=\" crossorigin=\"anonymous\"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">
-
-    <!-- Optional theme -->
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">
-
-    <!-- Latest compiled and minified JavaScript -->
-    <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>
-
-    <script src=\"js/index.js\"></script>
-</head>
+    <head>
+        <meta charset=\"utf-8\">
+        <title>HamidoExpress - Compte Test</title>
+        <link rel=\"stylesheet\" href=\"css/styles.css\">
+    
+        <script src=\"https://code.jquery.com/jquery-3.1.1.min.js\" integrity=\"sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=\" crossorigin=\"anonymous\"></script>
+        <script src=\"https://code.jquery.com/jquery-migrate-3.0.0.min.js\" integrity=\"sha256-JklDYODbg0X+8sPiKkcFURb5z7RvlNMIaE3RA2z97vw=\" crossorigin=\"anonymous\"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css\" integrity=\"sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u\" crossorigin=\"anonymous\">
+    
+        <!-- Optional theme -->
+        <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css\" integrity=\"sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp\" crossorigin=\"anonymous\">
+    
+        <!-- Latest compiled and minified JavaScript -->
+        <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>
+    
+        <script src=\"js/index.js\"></script>
+    </head>
 
 <body>
 <!--==============================header=================================-->
@@ -55,7 +55,7 @@ $member_page = "<!DOCTYPE html>
                         <ul class=\"dropdown-menu\">
                             <li><a href=\"#\">Profil</a></li>
                             <li><a href=\"#\">Historique</a></li>
-                            <li><a href=\"#\">Paramètres</a></li>
+                            <li><a href='editInfo.php'>Paramètres</a></li>
                             <li role=\"separator\" class=\"divider\"></li>
                             <li><a href=\"scripts/logout.php\">Déconnexion</a></li>
                         </ul>
