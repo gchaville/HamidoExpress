@@ -1,15 +1,15 @@
 <?php
 include("connect.php");
 
-if(isset($_POST['username']) && isset($_POST['pwd'])) {
+if(isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
 
-    $Username = addslashes($_POST['username']);
-    $Password = password_hash(addslashes($_POST['pwd']), PASSWORD_DEFAULT);
+    $Username = addslashes($_SESSION['username']);
+    $Password = addslashes($_SESSION['pwd']);
 
     $STMT=$PDO->query("SELECT *
-								FROM `Users`
-								WHERE Users.Username = ".$Username."
-								AND Users.Pass_word = ".$Password.")");
+								FROM `users`
+								WHERE users.Username = '$Username'
+								AND users.Pass_word = '$Password')");
     $r = array();
 
     while ($row = $STMT->fetch(PDO::FETCH_ASSOC))
