@@ -2,6 +2,8 @@
 // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
 session_start ();
 
+echo "<p>Votre login est <b>".$_SESSION['username']."</b> et votre mot de passe est <b>".$_SESSION['pwd']."</b>.</p>";
+
 
 
 $member_page = "<!DOCTYPE html>
@@ -23,9 +25,24 @@ $member_page = "<!DOCTYPE html>
         <script src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js\" integrity=\"sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa\" crossorigin=\"anonymous\"></script>
 
         <script>
-            $(document).ready(function () { 
-                $(\"#inputFirstName\").attr(\"placeholder\", \"test\");
-            })
+            $(document).ready(function () {
+                $.ajax({
+                    type: 'post',
+                    url: 'scripts/getuserinfos.php',
+                    success: function(a) {
+                        var b = $.parseJSON(a);
+                        
+                        $.each(b,function (a,b) {
+                            $('#inputFirstName').attr('value', b.First_name.toString());
+                            $('#inputLastName').attr('value', b.Last_name.toString());
+                            $('#inputDOB').attr('value', b.Date_of_birth);
+                            $('#inputEmail').attr('value', b.Mail);
+                            document.getElementById('inputAddress').value =  b.Address;
+                            $('#inputPhone').attr('value', b.Phone.toString());
+                        })
+                    }
+                }) 
+            })  
         </script>
     </head>
 
@@ -71,51 +88,45 @@ $member_page = "<!DOCTYPE html>
         <!--=======content================================-->
         <section id=\"content\">
             <div class=\"col-md-4\">
-                <form data-toggle=\"validator\" role=\"form\" action=\"scripts/editUser.php\" method=\"post\"\">
+                <form data-toggle=\"validator\" role=\"form\" action='scripts/editUser.php' method='post'>
                     <div class=\"form-group\">
                         <label for=\"inputFirstName\" class=\"control-label\">Prémon</label>
-                        <input type=\"text\" class=\"form-control blebleble\" id=\"inputFirstName\">
+                        <input type=\"text\" class=\"form-control\" id=\"inputFirstName\" name='firstname'>
                     </div>
 
                     <div class=\"form-group\">
                         <label for=\"inputLastName\" class=\"control-label\">Nom</label>
-                        <input type=\"text\" class=\"form-control\" id=\"inputLastName\">
+                        <input type=\"text\" class=\"form-control\" id=\"inputLastName\" name='lastname'>
                     </div>
 
                     <div class=\"form-group\">
                         <label for=\"inputDOB\" class=\"control-label\">Date de naissance (majeur seulement)</label>
-                        <input type=\"date\" class=\"form-control\" id=\"inputDOB\" data-error=\"Entrez une date de naissance valide!\" max=\"1999-01-01\">
+                        <input type=\"date\" class=\"form-control\" id=\"inputDOB\" name='dob' data-error=\"Entrez une date de naissance valide!\" max=\"1999-01-01\">
                     </div>
 
                     <div class=\"form-group\">
                         <label for=\"inputEmail\" class=\"control-label\">Courriel</label>
-                        <input type=\"email\" class=\"form-control\" id=\"inputEmail\" data-error=\"Entrez une adresse électronique valide!\">
+                        <input type=\"email\" class=\"form-control\" id=\"inputEmail\" name='mail' data-error=\"Entrez une adresse électronique valide!\">
                     </div>
 
                     <div class=\"form-group\">
                         <label for=\"inputAddress\" class=\"control-label\">Adresse</label>
-                        <textarea class=\"form-control\" rows=\"5\" id=\"inputAddress\"></textarea>
+                        <textarea class=\"form-control\" rows=\"5\" id=\"inputAddress\"name='address'></textarea>
                     </div>
 
                     <div class=\"form-group\">
                         <label for=\"inputPhone\" class=\"control-label\">Numéro de téléphone</label>
-                        <input type=\"text\" pattern=\"^\d{3}-?\d{3}-?\d{4}$\" class=\"form-control\" id=\"inputPhone\">
-                    </div>
-
-                    <div class=\"form-group\">
-                        <label for=\"inputUsername\" class=\"control-label\">Nom d'utilisateur</label>
-                        <input type=\"text\" pattern=\"^[_A-z0-9]{6,}$\" maxlength=\"20\" class=\"form-control\" id=\"inputUsername\">
-                        <div class=\"help-block with-errors\">Le nom doit contenir de 6 à 20 caractères (a-z, 0-9).</div>
+                        <input type=\"text\" pattern=\"^\d{3}-?\d{3}-?\d{4}$\" class=\"form-control\" id=\"inputPhone\" name='phone'>
                     </div>
 
                     <div class=\"form-group\">
                         <label for=\"inputPassword\" class=\"control-label\">Mot de passe</label>
-                        <input type=\"password\" data-minlength=\"6\" class=\"form-control\" id=\"inputPassword\">
+                        <input type=\"password\" data-minlength=\"6\" class=\"form-control\" id=\"inputPassword\" name='pwd'>
                         <div class=\"help-block with-errors\">Le mot de passe doit contenir au moins 6 caractères.</div>
                     </div>
 
                     <div class=\"form-group\">
-                        <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
+                        <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>
                     </div>
                 </form>
             </div>

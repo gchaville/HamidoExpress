@@ -1,7 +1,8 @@
 <?php
 include("connect.php");
 
-if(isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
+session_start ();
+if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
 
     $Username = addslashes($_SESSION['username']);
     $Password = addslashes($_SESSION['pwd']);
@@ -9,7 +10,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
     $STMT=$PDO->query("SELECT *
 								FROM `users`
 								WHERE users.Username = '$Username'
-								AND users.Pass_word = '$Password')");
+								AND users.Pass_word = '$Password'");
     $r = array();
 
     while ($row = $STMT->fetch(PDO::FETCH_ASSOC))
