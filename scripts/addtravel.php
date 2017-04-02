@@ -15,8 +15,8 @@ if(isset($_SESSION['username'])) {
 
     $id = $r[0]['Id'];
 
-    $STMT=$PDO->query("INSERT INTO travel (Id, Date_Departure, Driver_user, Itin, Nb_passenger)
-								VALUES ('NULL', '$Travel[0]', ' $Travel[1]', '$id', ' $Travel[2]');");
+    $STMT=$PDO->query("INSERT INTO travel (Id, DriverId, DepartureId, ArrivalId, Date, Price, Places_Available)
+								VALUES (NULL, '$Travel[0]', ' $Travel[1]', '$id', ' $Travel[2]');");
 
     if (!$STMT) {
         $dbError = "Impossible d'ajouter le voyage $id, $Travel[0] dans la base de données";

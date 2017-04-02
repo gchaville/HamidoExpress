@@ -75,23 +75,33 @@
         <!--=======content================================-->
         <section id="content">
             <form class="form-inline departure-search">
-                <label class="sr-only" for="departure">Start</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="departure" name="departure" placeholder="Ville de départ">
-
+                <label class="sr-only" for="departures">Départ</label>
+                <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="departures" name="departure" placeholder="Ville de départ">
+                </select>
                 <span class="glyphicon glyphicon-chevron-right"></span></span>
 
-                <label class="sr-only" for="arrival">End</label>
-                <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrival" name="arrival" placeholder="Ville d'arrivée">
-
-                <button type="submit" class="btn btn-primary search-button">Chercher</button>
+                <label class="sr-only" for="arrivals">Arrivée</label>
+                <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrivals" name="arrival" placeholder="Ville d'arrivée">
+                </select>
+                <button type="button" class="btn btn-primary search-button">Chercher</button>
 
             </form>
 
             <br><br>
 
-            <ul class="list-group departures">
-
-            </ul>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Départ</th>
+                    <th>Arrivée</th>
+                    <th>Prix</th>
+                    <th>Places disponibles</th>
+                </tr>
+                </thead>
+                <tbody class="departures">
+                </tbody>
+            </table>
 
             <nav aria-label="Page navigation">
                 <ul class="pagination">

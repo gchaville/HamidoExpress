@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Jeu 30 Mars 2017 à 19:18
+-- Généré le :  Dim 02 Avril 2017 à 22:17
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -29,28 +29,44 @@ USE `bd_hamidoexpress`;
 --
 
 CREATE TABLE `driver` (
-  `Id` int(5) NOT NULL,
-  `Username` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Driving_Year` int(20) NOT NULL,
-  `Nb_passenger_total` int(2) NOT NULL,
+  `Id` int(5) NOT NULL UNIQUE AUTO_INCREMENT,
+  `UserId` int(5) NOT NULL UNIQUE,
+  `Driving_Year` int(2) NOT NULL,
+  `Passenger_Total` int(4) NOT NULL,
   `Smoking` tinyint(1) NOT NULL,
   `Air_Conditioning` tinyint(1) NOT NULL,
   `Large_suicase` tinyint(1) NOT NULL,
   `Animals` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `itinerary`
+-- Structure de la table `town`
 --
 
-CREATE TABLE `itinerary` (
-  `Id` int(5) NOT NULL,
-  `Departure` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Arrival` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Price` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `town` (
+  `Id` int(5) NOT NULL UNIQUE AUTO_INCREMENT,
+  `Name` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
+  `Province` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Country` varchar(250) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Contenu de la table `town`
+--
+
+INSERT INTO `town` (`Id`, `Name`, `Province`, `Country`) VALUES
+(NULL, 'Montréal', 'QC', 'Canada'),
+(NULL, 'Québec', 'QC', 'Canada'),
+(NULL, 'Trois-Rivières', 'QC', 'Canada'),
+(NULL, 'Sherbrooke', 'QC', 'Canada'),
+(NULL, 'Saguenay', 'QC', 'Canada'),
+(NULL, 'Alma', 'QC', 'Canada'),
+(NULL, 'Rivière-du-Loup', 'QC', 'Canada'),
+(NULL, 'Rimouski', 'QC', 'Canada'),
+(NULL, 'Sept-Îles', 'QC', 'Canada'),
+(NULL, 'Gaspé', 'QC', 'Canada');
 
 -- --------------------------------------------------------
 
@@ -59,12 +75,14 @@ CREATE TABLE `itinerary` (
 --
 
 CREATE TABLE `travel` (
-  `Id` int(5) NOT NULL,
-  `Date_Departure` date NOT NULL,
-  `Driver_user` int(5) NOT NULL,
-  `Itin` int(5) NOT NULL,
-  `Nb_passenger` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Id` int(5) NOT NULL UNIQUE AUTO_INCREMENT,
+  `DriverId` int(5) NOT NULL,
+  `DepartureId` int(5) NOT NULL,
+  `ArrivalId` int(5) NOT NULL,
+  `Date` datetime NOT NULL,
+  `Price` int(3) NOT NULL,
+  `Places_Available` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -75,7 +93,7 @@ CREATE TABLE `travel` (
 CREATE TABLE `travel_supports_user` (
   `TravelId` int(5) NOT NULL,
   `UserId` int(5) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -84,16 +102,16 @@ CREATE TABLE `travel_supports_user` (
 --
 
 CREATE TABLE `users` (
-  `Id` int(5) NOT NULL,
-  `Username` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `First_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-`Last_name` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Id` int(5) NOT NULL UNIQUE AUTO_INCREMENT,
+  `Username` varchar(15) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `First_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `Last_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `Date_of_birth` date NOT NULL,
-  `Address` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Mail` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Pass_word` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Address` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `Mail` varchar(32) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `Phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `Pass_word` varchar(15) COLLATE utf8_unicode_ci NOT NULL UNIQUE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Index pour les tables exportées
@@ -103,13 +121,13 @@ CREATE TABLE `users` (
 -- Index pour la table `driver`
 --
 ALTER TABLE `driver`
-  ADD PRIMARY KEY (`Id`),
-  ADD KEY `fk_User` (`Username`);
+  ADD PRIMARY KEY (`Id`, `UserId`),
+  ADD FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`);
 
 --
--- Index pour la table `itinerary`
+-- Index pour la table `town`
 --
-ALTER TABLE `itinerary`
+ALTER TABLE `town`
   ADD PRIMARY KEY (`Id`);
 
 --
@@ -117,39 +135,24 @@ ALTER TABLE `itinerary`
 --
 ALTER TABLE `travel`
   ADD PRIMARY KEY (`Id`),
-  ADD KEY `fk_Driver` (`Driver_user`),
-  ADD KEY `fk_Itin` (`Itin`);
+  ADD FOREIGN KEY (`DriverId`) REFERENCES `driver`(`Id`),
+  ADD FOREIGN KEY (`DepartureId`) REFERENCES `town`(`Id`),
+  ADD FOREIGN KEY (`ArrivalId`) REFERENCES `town`(`Id`);
+
+--
+-- Index pour la table `travel_supports_user`
+--
+ALTER TABLE `travel_supports_user`
+  ADD PRIMARY KEY (`TravelId`,`UserId`),
+  ADD FOREIGN KEY (`TravelId`) REFERENCES `travel`(`Id`),
+  ADD FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`);
 
 --
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`Id`, `Username`);
+  ADD PRIMARY KEY (`Id`,`Username`);
 
---
--- AUTO_INCREMENT pour les tables exportées
---
-
---
--- AUTO_INCREMENT pour la table `driver`
---
-ALTER TABLE `driver`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
---
--- AUTO_INCREMENT pour la table `itinerary`
---
-ALTER TABLE `itinerary`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
---
--- AUTO_INCREMENT pour la table `travel`
---
-ALTER TABLE `travel`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
---
--- AUTO_INCREMENT pour la table `users`
---
-ALTER TABLE `users`
-  MODIFY `Id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=0;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

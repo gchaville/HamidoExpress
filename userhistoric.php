@@ -96,21 +96,19 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 
             $row = $STMT->fetch(PDO::FETCH_ASSOC);
 
-            $STMT=$PDO->query("SELECT * FROM  `travel`
+            $STMT = $PDO->query("SELECT * FROM  `travel`
                           INNER JOIN  (SELECT TravelId FROM travel_supports_user WHERE UserId = '".$row['Id']."') t
                           ON travel.Id = t.TravelId 
-                          INNER JOIN itinerary
-                          ON travel.Itin = itinerary.Id
                           ORDER BY Date_Departure ASC;");
 
             $row = $STMT->fetch(PDO::FETCH_ASSOC);
 
                 echo "<tr>
                       <th scope=\"row\">".$row['Date_Departure']."</th>
-                      <td>".$row['Departure']."</td>
-                      <td>".$row['Arrival']."</td>
+                      <td>".$row['DepartureId']."</td>
+                      <td>".$row['ArrivalId']."</td>
                       <td>".$row['Price']."</td>
-                      <td>".$row['Nb_passenger']."</td>
+                      <td>".$row['Places_Available']."</td>
                       </tr>";
         }
         ?>

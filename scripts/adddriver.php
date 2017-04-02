@@ -10,7 +10,7 @@ include("connect.php");
     //if ($Driver[3] = '1')
         //;
     
-    $STMT=$PDO->query("INSERT INTO driver (Id, Username, Driving_Year, Nb_passenger_total, Smoking, Air_Conditioning, Large_suicase, Animals)
+    $STMT=$PDO->query("INSERT INTO driver (Id, UserId, Driving_Year, Nb_passenger_total, Smoking, Air_Conditioning, Large_suicase, Animals)
 								VALUES (NULL, '$Driver[0]', '$Driver[1]', '$Driver[2]', '$Driver[3]', '$Driver[4]', '$Driver[5]', '$Driver[6]');");
     $STMT=$PDO->query("UPDATE driver
                                   SET Driving_Year = '$Driver[1]', Nb_passenger_total = '$Driver[2]', Smoking = '$Driver[3]', Air_Conditioning = '$Driver[4]', Large_suicase = '$Driver[5]', Animals = '$Driver[6]'
