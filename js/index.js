@@ -24,18 +24,4 @@ $(document).ready(function () {
             }
         })
     });
-
-
-    function userinfos()
-    {
-        $.ajax({
-            type: "post",
-            url: "scripts/getuserinfos.php",
-            success: function(a) {
-                console.log(a);
-                var b = $.parseJSON(a);
-                // Rajoute de quoi pour ton formulaire ou autre chose b.column1 (column comme la table de la BD)
-                }
-        })
-    }
 })

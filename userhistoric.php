@@ -6,11 +6,12 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
     header ('location: scripts/logout.php');
 }
 ?>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <title>HamidoExpress - Compte Test</title>
+        <title>HamidoExpress - Historique</title>
         <link rel="stylesheet" href="css/styles.css">
     
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -55,9 +56,9 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compte<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li class="active"><a href="#">Profil</a></li>
-                            <li><a href="userhistoric.php">Historique</a></li>
-                            <li><a href="editInfo.php">Paramètres</a></li>
+                            <li><a href="page_member.php">Profil</a></li>
+                            <li><a href="#">Historique</a></li>
+                            <li><a href='editInfo.php'>Paramètres</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="scripts/logout.php">Déconnexion</a></li>
                         </ul>
@@ -69,6 +70,17 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 </header>
 <!--=======content================================-->
 <section id="content">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Départ</th>
+            <th>Arrivée</th>
+            <th>Prix</th>
+            <th>Places disponibles</th>
+        </tr>
+        </thead>
+        <tbody>
         <?php
         // On récupère nos variables de session
         if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
@@ -76,7 +88,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
             $Password = addslashes($_SESSION['pwd']);
 
             include("scripts/connect.php");
-            echo "<h1>Bienvenue, <b>".$Username."</b> et votre mot de passe est <b>".$Password."</b>.</h1>";
+            echo "<p>Votre login est <b>".$Username."</b> et votre mot de passe est <b>".$Password."</b>.</p>";
 
             $STMT=$PDO->query("SELECT *
 								FROM `users`
@@ -85,19 +97,46 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 
             $row = $STMT->fetch(PDO::FETCH_ASSOC);
 
+            $STMT=$PDO->query("SELECT * FROM  `travel`
+                          INNER JOIN  (SELECT TravelId FROM travel_supports_user WHERE UserId = '".$row['Id']."') t
+                          ON travel.Id = t.TravelId 
+                          INNER JOIN itinerary
+                          ON travel.Itin = itinerary.Id
+                          ORDER BY Date_Departure ASC;");
 
-            echo "<ul class=\"list-group\">
-                  <li class=\"list-group-item\">Pseudo : ".$row['Username']."</li>
-                  <li class=\"list-group-item\">Prénom : ".$row['First_name']."</li>
-                  <li class=\"list-group-item\">Nom : ".$row['Last_name']."</li>
-                  <li class=\"list-group-item\">Date de naissance : ".$row['Date_of_birth']."</li>
-                  <li class=\"list-group-item\">Adresse postale : ".$row['Address']."</li>
-                  <li class=\"list-group-item\">Adresse courriel : ".$row['Mail']."</li>
-                  <li class=\"list-group-item\">Téléphone : ".$row['Phone']."</li>
-                  </ul>";
+            $row = $STMT->fetch(PDO::FETCH_ASSOC);
+
+                echo "<tr>
+                      <th scope=\"row\">".$row['Date_Departure']."</th>
+                      <td>".$row['Departure']."</td>
+                      <td>".$row['Arrival']."</td>
+                      <td>".$row['Price']."</td>
+                      <td>".$row['Nb_passenger']."</td>
+                      </tr>";
         }
         ?>
-    </ul>
+        </tbody>
+    </table>
+
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li>
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </section>
 
 <!--=======footer=================================-->
