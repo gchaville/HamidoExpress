@@ -126,7 +126,8 @@ $member_page = "<!DOCTYPE html>
                     </div>
 
                     <div class=\"form-group\">
-                        <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>
+                        <button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='page_member.php'\" >Retour</button>
+                        <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>  
                     </div>
                 </form>
             </div>
