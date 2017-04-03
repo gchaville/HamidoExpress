@@ -32,7 +32,7 @@ session_start ();
             <div class="col-md-4">
                 <form data-toggle="validator" role="form" action="scripts/adduser.php" method="post"">
                     <div class="form-group">
-                        <label for="inputFirstName" class="control-label">Prémon</label>
+                        <label for="inputFirstName" class="control-label">Prénom</label>
                         <input type="text" class="form-control" id="inputFirstName" name="firstname" placeholder="Prénom" required>
                     </div>
 
