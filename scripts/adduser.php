@@ -22,7 +22,7 @@ if(isset($_POST['username']) && isset($_POST['pwd'])) {
     else
         echo "<h1> Vous avez ete rajoute dans la Base de donnees !</h1>";
 
-    header("Location:../index.php");
+    header("Location:../accueil.php");
     exit();
 }
 ?>
