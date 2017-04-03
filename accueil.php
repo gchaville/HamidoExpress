@@ -28,6 +28,85 @@ session_start ();
             document.getElementById("headerAccueil").classList.add('active');
         </script>
 
-        <h1>hola Qué tal</h1>
+        <style>
+
+            @-webkit-keyframes Transition {
+                0% {
+                    opacity:1;
+                }
+                17% {
+                    opacity:1;
+                }
+                25% {
+                    opacity:0;
+                }
+                92% {
+                    opacity:0;
+                }
+                100% {
+                    opacity:1;
+                }
+            }
+
+            #transition {
+                position:relative;
+                height:281px;
+                width:450px;
+                margin:0 auto;
+            }
+            #transition img {
+                position:absolute;
+                left:0;
+            }
+
+            #transition img {
+                -webkit-animation-name: Transition;
+                -webkit-animation-timing-function: ease-in-out;
+                -webkit-animation-iteration-count: infinite;
+                -webkit-animation-duration: 8s;
+
+                animation-name: Transition;
+                animation-timing-function: ease-in-out;
+                animation-iteration-count: infinite;
+                animation-duration: 8s;
+            }
+            #transition img:nth-of-type(1) {
+                -webkit-animation-delay: 6s;
+                animation-delay: 6s;
+            }
+            #transition img:nth-of-type(2) {
+                -webkit-animation-delay: 4s;
+                animation-delay: 4s;
+            }
+            #transition img:nth-of-type(3) {
+                -webkit-animation-delay: 2s;
+                animation-delay: 2s;
+            }
+            #transition img:nth-of-type(4) {
+                -webkit-animation-delay: 0s;
+                animation-delay: 0s;
+            }
+
+            h4 {
+                text-align: center;
+            }
+
+            #transition {
+                align-content: center;
+            }
+        </style>
+
+        <h4>Page d'accueil belle</h4>
+
+        <div id="transition">
+            <img alt="hello" src="images/voyage1.png" width="450" height="300">
+            <img alt="hello" src="images/voyage2.png" width="450" height="300">
+            <img alt="hello" src="images/voyage3.png" width="450" height="300">
+            <img alt="hello" src="images/voyage4.png" width="450" height="300">
+        </div>
+
+        <br><br>
+
+        <h4>Avec HamidoExpress, c'est très facile de voyager.</h4>
     </body>
 </html>
