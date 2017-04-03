@@ -24,7 +24,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
     
         <!-- Latest compiled and minified JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    
+
         <script src="js/index.js"></script>
     </head>
 
@@ -60,7 +60,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
             $STMT = $PDO->query("SELECT * FROM  `travel`
                           INNER JOIN  (SELECT TravelId FROM travel_supports_user WHERE UserId = '$UserId') t
                           ON travel.Id = t.TravelId 
-                          ORDER BY Date_Departure ASC;");
+                          ORDER BY Date ASC;");
 
             $today = date('Y-m-d');
 
@@ -86,7 +86,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
                 if ( $today < $travelDate) {
                     if ($row['Places_Available'] > 0)
                         $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary booking-button\">Réserver</button></td>";
-
+                    
                     $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary cancel-booking-button\">Annuler</button></td>";
                 }
 
