@@ -75,3 +75,4 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 
 <button type="button" class="btn btn-primary" onclick="location.href='Driverinscription.php'" >Configuration conducteur</button>
 <button type="button" class="btn btn-primary" onclick="location.href='newtravel.php'" >Nouveau voyage</button>
+<button type="button" class="btn btn-primary" onclick="location.href='driverHistoric.php'" >Voyages conducteur</button>

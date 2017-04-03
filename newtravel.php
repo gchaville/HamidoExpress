@@ -64,13 +64,13 @@ if(!isset($_SESSION['username'])) {
         </div>
 
         <div class="form-group">
-            <label for="inputEmail" class="control-label">Prix du voyage</label>
-            <input type="number" class="form-control" id="Price" name="Price" placeholder="000" required>
+            <label for="inputEmail" class="control-label">Prix du voyage (min: 10$, max: 100$)</label>
+            <input type="number" class="form-control" id="Price" name="Price" placeholder="000" min="10" max="100" required>
         </div>
 
         <div class="form-group">
-            <label for="inputPhone" class="control-label">Nombre de place disponible</label>
-            <input type="number" class="form-control" id="Places_Available" name="Places_Available" placeholder="0" required>
+            <label for="inputPhone" class="control-label">Nombre de place disponible (maximum 6)</label>
+            <input type="number" class="form-control" id="Places_Available" name="Places_Available" placeholder="0" max="6" required>
         </div>
 
         <input type="hidden" name="driverid" id="driveridInput" value=<?php echo '"'.$_SESSION['driverid'].'"'?>>
