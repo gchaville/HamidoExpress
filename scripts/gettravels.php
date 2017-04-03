@@ -11,8 +11,14 @@ if(isset($_POST['departure']) && isset($_POST['arrival'])) {
                           ORDER BY Date ASC;");
     $r = array();
 
+    $today = date('Y-m-d');
+
     while ($row = $STMT->fetch(PDO::FETCH_ASSOC)) {
-        $r[] = $row;
+        if($today < $row['Date']) {
+            $time = date_format(date_create($row['Schedule']), 'g:i A');
+            $row['Schedule'] = $time;
+            $r[] = $row;
+        }
     }
 
     echo json_encode($r);

@@ -8,8 +8,10 @@ if(isset($_POST['username']) && isset($_POST['pwd'])) {
         password_hash(addslashes($_POST['pwd']), PASSWORD_DEFAULT));
 
 
-    $STMT=$PDO->query("INSERT INTO users (Id, Username, First_name, Last_name, Date_of_birth, Address, Mail, Phone, Pass_word)
-								VALUES (NULL, '$User[0]', '$User[1]', '$User[2]', '$User[3]', '$User[4]', '$User[5]', '$User[6]', '$User[7]');");
+    $STMT=$PDO->query("INSERT INTO users (Id, Username, First_name, Last_name, Date_of_birth, Address, Mail, 
+                      Phone, Pass_word, Cancelling, Banning_Date)
+					  VALUES (NULL, '$User[0]', '$User[1]', '$User[2]', '$User[3]', '$User[4]', '$User[5]', '$User[6]', 
+					  '$User[7]', 0, NULL);");
 
     print_r($User);
     if (!$STMT) {
@@ -22,7 +24,7 @@ if(isset($_POST['username']) && isset($_POST['pwd'])) {
     else
         echo "<h1> Vous avez ete rajoute dans la Base de donnees !</h1>";
 
-    header("Location:../index.php");
+    header("Location:../accueil.php");
     exit();
 }
 ?>

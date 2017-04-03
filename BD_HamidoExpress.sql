@@ -36,7 +36,9 @@ CREATE TABLE `driver` (
   `Smoking` tinyint(1) NOT NULL,
   `Air_Conditioning` tinyint(1) NOT NULL,
   `Large_suicase` tinyint(1) NOT NULL,
-  `Animals` tinyint(1) NOT NULL
+  `Animals` tinyint(1) NOT NULL,
+  `Cancelling` int(1) COLLATE utf8_unicode_ci NULL DEFAULT 0,
+  `Banning_Date` date COLLATE utf8_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,6 +82,7 @@ CREATE TABLE `travel` (
   `DepartureId` int(5) NOT NULL,
   `ArrivalId` int(5) NOT NULL,
   `Date` date NOT NULL,
+  `Schedule` time NOT NULL,
   `Price` int(3) NOT NULL,
   `Places_Available` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -91,6 +94,7 @@ CREATE TABLE `travel` (
 --
 
 CREATE TABLE `travel_supports_user` (
+  `Id` int(5) NOT NULL UNIQUE,
   `TravelId` int(5) NOT NULL,
   `UserId` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -110,7 +114,9 @@ CREATE TABLE `users` (
   `Address` text(250) COLLATE utf8_unicode_ci NOT NULL,
   `Mail` varchar(50) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
   `Phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
-  `Pass_word` varchar(250) COLLATE utf8_unicode_ci NOT NULL UNIQUE
+  `Pass_word` varchar(250) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `Cancelling` int(1) COLLATE utf8_unicode_ci NULL DEFAULT 0,
+  `Banning_Date` date COLLATE utf8_unicode_ci NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -122,7 +128,7 @@ CREATE TABLE `users` (
 --
 ALTER TABLE `driver`
   ADD PRIMARY KEY (`Id`, `UserId`),
-  ADD FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`);
+  ADD CONSTRAINT fk_user_id FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Index pour la table `town`
@@ -135,16 +141,17 @@ ALTER TABLE `town`
 --
 ALTER TABLE `travel`
   ADD PRIMARY KEY (`Id`),
-  ADD FOREIGN KEY (`DriverId`) REFERENCES `driver`(`Id`),
-  ADD FOREIGN KEY (`DepartureId`) REFERENCES `town`(`Id`),
-  ADD FOREIGN KEY (`ArrivalId`) REFERENCES `town`(`Id`);
+  ADD CONSTRAINT fk_driver_id FOREIGN KEY (`DriverId`) REFERENCES `driver`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_departure_id FOREIGN KEY (`DepartureId`) REFERENCES `town`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_arrival_id FOREIGN KEY (`ArrivalId`) REFERENCES `town`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Index pour la table `travel_supports_user`
 --
 ALTER TABLE `travel_supports_user`
-  ADD FOREIGN KEY (`TravelId`) REFERENCES `travel`(`Id`),
-  ADD FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD CONSTRAINT fk_travel_id FOREIGN KEY (`TravelId`) REFERENCES `travel`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_user_id FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Index pour la table `users`

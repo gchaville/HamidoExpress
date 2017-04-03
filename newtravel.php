@@ -41,43 +41,48 @@ if(!isset($_SESSION['username'])) {
 <section id="content">
     <div class="col-md-4">
         <form data-toggle="validator" role="form" action="scripts/addtravel.php" method="post"">
-        <div class='form-group'>
-            <label for='inputUsername' class='control-label'>Pseudo</label>
-            <input type='text' class='form-control' id='inputUsername' name='username' placeholder=<?php echo '"'.$_SESSION['username'].'"'?> disabled>
-        </div>
+            <div class='form-group'>
+                <label for='inputUsername' class='control-label'>Pseudo</label>
+                <input type='text' class='form-control' id='inputUsername' name='username' placeholder=<?php echo '"'.$_SESSION['username'].'"'?> disabled>
+            </div>
 
-        <div class="form-group">
-            <label class="control-label" for="departures">Départ</label>
-            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="departures" name="departure" placeholder="Ville de départ" required>
-            </select>
-        </div>
+            <div class="form-group">
+                <label class="control-label" for="departures">Départ</label>
+                <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="departures" name="departure" placeholder="Ville de départ" required>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label class="control-label" for="arrivals">Arrivée</label>
-            <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrivals" name="arrival" placeholder="Ville d'arrivée" required>
-            </select>
-        </div>
+            <div class="form-group">
+                <label class="control-label" for="arrivals">Arrivée</label>
+                <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrivals" name="arrival" placeholder="Ville d'arrivée" required>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label for="inputDOB" class="control-label">Date de départ</label>
-            <input type="date" class="form-control" id="Date" name="Date" placeholder="AAAA-MM-JJ" required>
-        </div>
+            <div class="form-group">
+                <label for="inputDate" class="control-label">Date de départ</label>
+                <input type="date" class="form-control" id="inputDate" name="date" placeholder="AAAA-MM-JJ" required>
+            </div>
 
-        <div class="form-group">
-            <label for="inputEmail" class="control-label">Prix du voyage (min: 10$, max: 100$)</label>
-            <input type="number" class="form-control" id="Price" name="Price" placeholder="000" min="10" max="100" required>
-        </div>
+            <div class="form-group">
+                <label for="inputSchedule" class="control-label">Heure de départ</label>
+                <input type="time" class="form-control" id="inputSchedule" name="schedule" value="08:30:00" step="600" min="06:00:00" max="22:00:00">
+            </div>
 
-        <div class="form-group">
-            <label for="inputPhone" class="control-label">Nombre de place disponible (maximum 6)</label>
-            <input type="number" class="form-control" id="Places_Available" name="Places_Available" placeholder="0" max="6" required>
-        </div>
+            <div class="form-group">
+                <label for="inputPrice" class="control-label">Prix du voyage (min: 10$, max: 100$)</label>
+                <input type="number" class="form-control" id="inputPrice" name="price" placeholder="10$" min="10" max="100" required>
+            </div>
 
-        <input type="hidden" name="driverid" id="driveridInput" value=<?php echo '"'.$_SESSION['driverid'].'"'?>>
-        <div class="form-group">
-            <button type="button" class="btn btn-primary" onclick="location.href='page_member.php'" >Retour</button>
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </div>
+            <div class="form-group">
+                <label for="inputPlacesAvailable" class="control-label">Nombre de place disponible (maximum 6)</label>
+                <input type="number" class="form-control" id="inputPlacesAvailable" name="placesavailable" placeholder="0" max="6" required>
+            </div>
+
+            <input type="hidden" name="driverid" id="driveridInput" value=<?php echo '"'.$_SESSION['driverid'].'"'?>>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="location.href='page_member.php'" >Retour</button>
+                <button type="submit" class="btn btn-primary">Envoyer</button>
+            </div>
         </form>
     </div>
 </section>

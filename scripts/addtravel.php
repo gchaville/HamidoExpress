@@ -5,13 +5,13 @@ session_start();
 if(isset($_SESSION['userid']) && isset($_SESSION['driverid'])) {
     $DriverId = addslashes($_SESSION['driverid']);
 
-    $Travel = array($DriverId, addslashes($_POST['departure']), addslashes($_POST['arrival']), addslashes($_POST['Date']),
-        addslashes($_POST['Price']), addslashes($_POST['Places_Available']));
+    $Travel = array($DriverId, addslashes($_POST['departure']), addslashes($_POST['arrival']), addslashes($_POST['date']),
+        addslashes($_POST['schedule']), addslashes($_POST['price']), addslashes($_POST['placesavailable']));
 
     print_r($Travel);
 
-    $STMT=$PDO->query("INSERT INTO travel (Id, DriverId, DepartureId, ArrivalId, Date, Price, Places_Available)
-								VALUES (NULL, '$Travel[0]', '$Travel[1]', '$Travel[2]', '$Travel[3]', '$Travel[4]', '$Travel[5]');");
+    $STMT=$PDO->query("INSERT INTO travel (Id, DriverId, DepartureId, ArrivalId, Date, Schedule, Price, Places_Available)
+								VALUES (NULL, '$Travel[0]', '$Travel[1]', '$Travel[2]', '$Travel[3]', '$Travel[4]', '$Travel[5]', '$Travel[6]');");
 
     if (!$STMT) {
         $dbError = "Impossible d'ajouter votre voyage, $Travel[0], dans la base de données";

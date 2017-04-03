@@ -1,7 +1,7 @@
 <?php
 // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
 session_start ();
-if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
+if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
 {
     header ('location: scripts/logout.php');
 }
@@ -37,47 +37,62 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 </script>
 <!--=======content================================-->
 <section id="content">
-    <table class="table table-striped">
+    <table class="table">
         <thead>
         <tr>
             <th>Date</th>
+            <th>Horaire</th>
             <th>Départ</th>
             <th>Arrivée</th>
             <th>Prix</th>
             <th>Places disponibles</th>
+            <th></th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <?php
         // On récupère nos variables de session
-        if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
-            $Username = addslashes($_SESSION['username']);
-            $Password = addslashes($_SESSION['pwd']);
+            $UserId = addslashes($_SESSION['userid']);
 
             include("scripts/connect.php");
 
-            $STMT=$PDO->query("SELECT *
-								FROM `users`
-								WHERE users.Username = '$Username'
-								AND users.Pass_word = '$Password';");
-
-            $row = $STMT->fetch(PDO::FETCH_ASSOC);
-
             $STMT = $PDO->query("SELECT * FROM  `travel`
-                          INNER JOIN  (SELECT TravelId FROM travel_supports_user WHERE UserId = '".$row['Id']."') t
+                          INNER JOIN  (SELECT TravelId FROM travel_supports_user WHERE UserId = '$UserId') t
                           ON travel.Id = t.TravelId 
                           ORDER BY Date_Departure ASC;");
 
-            $row = $STMT->fetch(PDO::FETCH_ASSOC);
+            $today = date('Y-m-d');
 
-                echo "<tr>
-                      <th scope=\"row\">".$row['Date_Departure']."</th>
-                      <td>".$row['DepartureId']."</td>
-                      <td>".$row['ArrivalId']."</td>
-                      <td>".$row['Price']."</td>
-                      <td>".$row['Places_Available']."</td>
-                      </tr>";
-        }
+            while ($row = $STMT->fetch(PDO::FETCH_ASSOC)) {
+                $VOY = $PDO->query("SELECT `Name` FROM  `town`
+                                          WHERE town.Id =  '$row[DepartureId]';");
+                $dep = $VOY->fetch(PDO::FETCH_ASSOC);
+                $VOY = $PDO->query("SELECT `Name` FROM  `town`
+                                          WHERE town.Id =  '$row[ArrivalId]';");
+                $arr = $VOY->fetch(PDO::FETCH_ASSOC);
+
+                $travelDate = $row['Date'];
+                $time = date_format(date_create($row['Schedule']), 'g:i A');
+                $today > $travelDate ? $tableTr = "<tr class=\"active useless\">" : $tableTr = "<tr>";
+
+                $tableTr .="<th scope=\"row\">$travelDate</th>
+                            <td>$time</td>
+                            <td>".$dep['Name']."</td>
+                            <td>".$arr['Name']."</td>
+                            <td>" . $row['Price'] . "</td>
+                            <td>" . $row['Places_Available'] . "</td>";
+
+                if ( $today < $travelDate) {
+                    if ($row['Places_Available'] > 0)
+                        $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary booking-button\">Réserver</button></td>";
+
+                    $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary cancel-booking-button\">Annuler</button></td>";
+                }
+
+                $tableTr .="</tr>";
+                echo $tableTr;
+            }
         ?>
         </tbody>
     </table>

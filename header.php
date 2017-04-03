@@ -23,31 +23,33 @@
                         echo '<li id="headerDeparts"><a href="index.php">Départs</a></li>'?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <?php if(isset($_SESSION['username']))
-                        echo '<li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compte<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li id="headerProfil"><a href="page_member.php">Profil</a></li>
-                                            <li id="headerHistorique"><a href="userhistoric.php">Historique</a></li>
-                                            <li id="headerParametres"><a href="editInfo.php">Paramètres</a></li>
-                                            <li role="separator" class="divider"></li>
-                                            <li><a href="scripts/logout.php">Déconnexion</a></li>
-                                        </ul>
-                                    </li>';
-                    else
-                        echo '<li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion<span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <form class="navbar-form navbar-left" action="scripts/login.php" method="post">
-                                                <div class="form-group">
-                                                    <input type="text" class="form-control" name="username" placeholder="Nom d\'utilisateur">
-                                                    <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" minlength="6">
-                                                </div>
-                                                <input type="submit" class="btn btn-default" value="Se connecter">
-                                            </form>
-                                        </ul>
-                                    </li>
-                                    <li id="headerInscription"><a href="inscription.php">Inscription</a></li>';
+                    <?php
+
+                        if(isset($_SESSION['username']))
+                            echo '<li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compte<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li id="headerProfil"><a href="page_member.php">Profil</a></li>
+                                                <li id="headerHistorique"><a href="userhistoric.php">Historique</a></li>
+                                                <li id="headerParametres"><a href="editInfo.php">Paramètres</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="scripts/logout.php">Déconnexion</a></li>
+                                            </ul>
+                                        </li>';
+                        else
+                            echo '<li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion<span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <form class="navbar-form navbar-left" action="scripts/login.php" method="post">
+                                                    <div class="form-group">
+                                                        <input type="text" class="form-control" name="username" placeholder="Nom d\'utilisateur">
+                                                        <input type="password" class="form-control" name="pwd" placeholder="Mot de passe" minlength="6">
+                                                    </div>
+                                                    <input type="submit" class="btn btn-default" value="Se connecter">
+                                                </form>
+                                            </ul>
+                                        </li>
+                                        <li id="headerInscription"><a href="inscription.php">Inscription</a></li>';
                     ?>
                 </ul>
             </div><!-- /.navbar-collapse -->

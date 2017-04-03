@@ -22,8 +22,10 @@ if (isset($_SESSION['username'])) {
         if ($Driver[6] != 1)
             $Driver[6] = 0;
 
-        $STMT = $PDO->query("INSERT INTO driver (Id, UserId, Driving_Year, Passenger_Total, Smoking, Air_Conditioning, Large_suicase, Animals)
-                                      VALUES (NULL, '$Driver[0]', '$Driver[1]', '$Driver[2]', '$Driver[3]', '$Driver[4]', '$Driver[5]', '$Driver[6]');");
+        $STMT = $PDO->query("INSERT INTO driver (Id, UserId, Driving_Year, Passenger_Total, Smoking, 
+                            Air_Conditioning, Large_suicase, Animals, Cancelling, Banning_Date)
+                            VALUES (NULL, '$Driver[0]', '$Driver[1]', '$Driver[2]', '$Driver[3]', '$Driver[4]', 
+                            '$Driver[5]', '$Driver[6]', 0, NULL);");
 
         if (!$STMT) {
             $dbError = "Impossible d'ajouter l'usager $Username dans la base de données";

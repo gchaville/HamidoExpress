@@ -46,10 +46,11 @@ session_start ();
 
             <br><br>
 
-            <table class="table table-striped">
+            <table class="table">
                 <thead>
                 <tr>
                     <th>Date</th>
+                    <th>Horaire</th>
                     <th>Prix</th>
                     <th>Places disponibles</th>
                     <th>Préférences</th>

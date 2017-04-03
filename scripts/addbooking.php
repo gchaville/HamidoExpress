@@ -6,7 +6,7 @@ if(isset($_SESSION['userid']) && isset($_POST['travelid'])) {
     $UserId = addslashes($_SESSION['userid']);
     $TravelId = addslashes($_POST['travelid']);
 
-    $STMT=$PDO->query("INSERT INTO `travel_supports_user`(`TravelId`, `UserId`) VALUES ($TravelId, $UserId);");
+    $STMT=$PDO->query("INSERT INTO `travel_supports_user`(`Id`, `TravelId`, `UserId`) VALUES (NULL, $TravelId, $UserId);");
 
     if (!$STMT) {
         $dbError = "Impossible d'enregistrer cette réservation dans la base de données";

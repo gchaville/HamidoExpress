@@ -1,17 +1,17 @@
 <?php
 // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
 session_start ();
-if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
-{
+if (!isset($_SESSION['username']))
     header ('location: scripts/logout.php');
-}
+elseif (!isset($_SESSION['driverid']))
+    header ('location: page_member.php');
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
-    <title>HamidoExpress - Historique</title>
+    <title>HamidoExpress - Historique de voyages</title>
     <link rel="stylesheet" href="css/styles.css">
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -34,22 +34,21 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 
 <!--=======content================================-->
 <section id="content">
-    <table class="table table-striped">
+    <table class="table">
         <thead>
         <tr>
             <th>Date</th>
+            <th>Horaire</th>
             <th>Départ</th>
             <th>Arrivée</th>
             <th>Prix</th>
             <th>Places disponibles</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <?php
         // On récupère nos variables de session
-        if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
-            $Username = addslashes($_SESSION['username']);
-            $Password = addslashes($_SESSION['pwd']);
             $DriverId = addslashes($_SESSION['driverid']);
 
             include("scripts/connect.php");
@@ -57,6 +56,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
             $STMT = $PDO->query("SELECT * FROM  `travel`
                                           WHERE DriverId =  '$DriverId';");
 
+            $today = date('Y-m-d');
 
             while ($row = $STMT->fetch(PDO::FETCH_ASSOC))
             {
@@ -67,15 +67,24 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
                                           WHERE town.Id =  '$row[ArrivalId]';");
                 $arr = $VOY->fetch(PDO::FETCH_ASSOC);
 
-                echo "<tr>
-                      <th scope=\"row\">".$row['Date']."</th>
-                      <td>".$dep['Name']."</td>
-                      <td>".$arr['Name']."</td>
-                      <td>".$row['Price']."</td>
-                      <td>".$row['Places_Available']."</td>
-                      </tr>";
+                $travelDate = $row['Date'];
+                $time = date_format(date_create($row['Schedule']), 'g:i A');
+                $today > $travelDate ? $tableTr = "<tr class=\"active useless\">" : $tableTr = "<tr>";
+
+                $tableTr .= "<th scope=\"row\">$travelDate</th>
+                             <td>$time</td>
+                             <td>".$dep['Name']."</td>
+                             <td>".$arr['Name']."</td>
+                             <td>".$row['Price']."</td>
+                             <td>".$row['Places_Available']."</td>";
+
+                if ( $today < $travelDate)
+                    $tableTr .= "<td><button type=\"button\" id=\"".$row['Id']."\" class=\"btn btn-primary cancel-travel-button\">Annuler</button></td>";
+              
+                $tableTr .= "</tr>";
+
+                echo $tableTr;
             }
-        }
         ?>
         </tbody>
     </table>

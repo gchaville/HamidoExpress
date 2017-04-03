@@ -10,7 +10,7 @@ $(document).ready(function () {
                 console.log(a);
                 var b = $.parseJSON(a);
                 $('.departures').html(""), $.each(b,function (a,b) {
-                    var line = '<tr class="travel" value="'+b.Id+'">' + '<th scope="row">'+ b.Date +'</th>' + '<td>'+ b.Price + ' $</td>' + '<td>';
+                    var line = '<tr class="travel'+b.Id+'" value="'+b.Id+'">' + '<th scope="row">'+ b.Date +'</th>' + '<td>'+ b.Schedule + '</td>' + '<td>'+ b.Price + ' $</td>' + '<td>';
 
                     for ($i = 1; $i <= b.Places_Available; $i++) {
                         line += '<img alt="hello" src="images/stickman.png" width="30" height="30">';
@@ -45,7 +45,7 @@ $(document).ready(function () {
                             $('.departures').append(line);
 
                             if (b.Places_Available == 0)
-                                $('#'+b.Id).addClass('disabled');
+                                $('#'+b.Id).addClass('disabled'), $('.travel'+b.Id).addClass('active useless');
 
                             $(".booking-button").click(function() {
                                 //console.log($('.departure-search').serializeArray());
