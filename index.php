@@ -93,8 +93,6 @@
                 <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Départ</th>
-                    <th>Arrivée</th>
                     <th>Prix</th>
                     <th>Places disponibles</th>
                 </tr>

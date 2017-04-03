@@ -107,6 +107,7 @@ if(!isset($_SESSION['username'])) {
         </div>
 
         <div class='form-group'>
+            <button type="button" class="btn btn-primary" onclick="location.href='page_member.php'" >Retour</button>
             <button type='submit' class='btn btn-primary'>Envoyer</button>
         </div>
         </form>

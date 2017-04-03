@@ -116,12 +116,6 @@ $member_page = "<!DOCTYPE html>
                     </div>
 
                     <div class=\"form-group\">
-                        <label for=\"inputPassword\" class=\"control-label\">Mot de passe</label>
-                        <input type=\"password\" data-minlength=\"6\" class=\"form-control\" id=\"inputPassword\" name='pwd'>
-                        <div class=\"help-block with-errors\">Le mot de passe doit contenir au moins 6 caractères.</div>
-                    </div>
-
-                    <div class=\"form-group\">
                         <button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='page_member.php'\" >Retour</button>
                         <button type=\"submit\" class=\"btn btn-primary\">Enregistrer</button>  
                     </div>

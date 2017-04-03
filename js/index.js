@@ -12,11 +12,9 @@ $(document).ready(function () {
                 var b = $.parseJSON(a);
                 $('.departures').html(""), $.each(b,function (a,b) {
                     $('.departures').append('<tr class="travel">' +
-                        '<th scope="row">'+ b.Date_Departure +'</th>' +
-                        '<td>'+ b.Departure + '</td>' +
-                        '<td>'+ b.Arrival + '</td>' +
+                        '<th scope="row">'+ b.Date +'</th>' +
                         '<td>'+ b.Price + '</td>' +
-                        '<td>'+ b.Nb_passenger + '</td>' +
+                        '<td>'+ b.Places_Available + '</td>' +
                         '</tr>');
                 })
             }
