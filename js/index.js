@@ -7,7 +7,6 @@ $(document).ready(function () {
             url: "scripts/gettravels.php",
             data: $('.departure-search').serializeArray(),
             success: function(a){
-                console.log(a);
                 var b = $.parseJSON(a);
                 $('.departures').html(""), $.each(b,function (a,b) {
                     var line = '<tr class="travel'+b.Id+'" value="'+b.Id+'">' + '<th scope="row">'+ b.Date +'</th>' + '<td>'+ b.Schedule + '</td>' + '<td>'+ b.Price + ' $</td>' + '<td>';
@@ -35,31 +34,27 @@ $(document).ready(function () {
 
                     $('.departures').append(line);
 
-                    $(".booking-button").click(bookTravel());
+                    $(".booking-button").click(function() {
+                        //console.log($('.departure-search').serializeArray());
+                        $.ajax({
+                            type: "post",
+                            url: "scripts/addbooking.php",
+                            data: {travelid: $(this).attr('id')},
+                            success: function (a) {
+                                console.log("can be booked!")
+                            }
+                        })
+                    });
 
                     if (b.Places_Available <= 0) {
-                        $('#' + b.Id).addClass('disabled').text("Complet");
+                        $('#' + b.Id).hide();
                         $('.travel' + b.Id).addClass('active useless');
-                        $("body").unbind("click", '#'+b.Id, bookTravel);
                     }
                 })
             }
         })
     });
 
-    $(".booking-button").click(bookTravel());
-
-    function bookTravel() {
-        //console.log($('.departure-search').serializeArray());
-        $.ajax({
-            type: "post",
-            url: "scripts/addbooking.php",
-            data: {travelid: $(this).attr('id')},
-            success: function (a) {
-                console.log("can be booked!")
-            }
-        })
-    }
 
     function getDepartures() {
         $.ajax({

@@ -86,7 +86,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
                 if ( $today < $travelDate) {
                     if ($row['Places_Available'] > 0)
                         $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary booking-button\">Réserver</button></td>";
-                    
+
                     $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary cancel-booking-button\">Annuler</button></td>";
                 }
 
