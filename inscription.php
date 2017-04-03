@@ -77,7 +77,7 @@ session_start ();
                     </div>
 
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary" onclick="location.href='accueil.php'" >Retour</button>
+                        <button type="button" class="btn btn-primary" onclick="location.href='index.php'" >Retour</button>
                         <button type="submit" class="btn btn-primary">Envoyer</button>
                     </div>
                 </form>

@@ -27,7 +27,7 @@ if(isset($_SESSION['userid']) && isset($_POST['travelid'])) {
         }
         else {
             echo "<h1> Réservation rajoute dans la Base de donnees !</h1>";
-            header("Location:../index.php");
+            header("Location:../search.php");
         }
     }
 
