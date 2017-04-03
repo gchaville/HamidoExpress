@@ -11,11 +11,21 @@ $(document).ready(function () {
                 console.log(a);
                 var b = $.parseJSON(a);
                 $('.departures').html(""), $.each(b,function (a,b) {
-                    $('.departures').append('<tr class="travel">' +
-                        '<th scope="row">'+ b.Date +'</th>' +
-                        '<td>'+ b.Price + '</td>' +
-                        '<td>'+ b.Places_Available + '</td>' +
-                        '</tr>');
+                    var line = '<tr class="travel">' + '<th scope="row">'+ b.Date +'</th>' + '<td>'+ b.Price + ' $</td>' + '<td>';
+
+                    for ($i = 1; $i <= b.Places_Available; $i++) {
+                        line += '<img alt="hello" src="images/stickman.png" width="30" height="30">';
+                    }
+
+                    line += '</td>' +
+                        '<td><button type="button" id="'+b.Id+'" class="btn btn-primary booking-button">Réserver</button></td>' +
+                        '<td></td>' +
+                        '</tr>';
+
+                    $('.departures').append(line);
+
+                    if (b.Places_Available == 0)
+                        $('#'+b.Id).addClass('disabled');
                 })
             }
         })

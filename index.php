@@ -52,6 +52,8 @@ session_start ();
                     <th>Date</th>
                     <th>Prix</th>
                     <th>Places disponibles</th>
+                    <th>Préférences</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody class="departures">
