@@ -150,8 +150,8 @@ ALTER TABLE `travel`
 --
 ALTER TABLE `travel_supports_user`
   ADD PRIMARY KEY (`Id`),
-  ADD CONSTRAINT fk_travel_id FOREIGN KEY (`TravelId`) REFERENCES `travel`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT fk_user_id FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT fk_travels_id FOREIGN KEY (`TravelId`) REFERENCES `travel`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_users_id FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Index pour la table `users`

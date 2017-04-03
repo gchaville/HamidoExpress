@@ -53,7 +53,9 @@ session_start ();
 
                     <div class="form-group">
                         <label for="inputAddress" class="control-label">Adresse</label>
-                        <textarea class="form-control" rows="5" id="inputAddress" name="address" data-error="Entrez une adresse valide!" placeholder="Adresse postale"></textarea>
+                        <textarea class="form-control" rows="5" id="inputAddress" name="address" data-error="Entrez une adresse valide!" placeholder="#, rue
+                        ville, province
+                        code postale"></textarea>
                     </div>
 
 

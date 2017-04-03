@@ -20,7 +20,8 @@
                 <ul class="nav navbar-nav">
                     <li id="headerAccueil"><a href="accueil.php">Accueil</a></li>
                     <?php if(isset($_SESSION['username']))
-                        echo '<li id="headerDeparts"><a href="index.php">Départs</a></li>'?>
+                        echo '<li id="headerDeparts"><a href="index.php">Départs</a></li>
+                              <li><a href="#">Bienvenue, <b>'.$_SESSION['username'].'</b> !</a></li>'?>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php

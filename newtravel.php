@@ -44,7 +44,7 @@ if(!isset($_SESSION['username'])) {
 <!--=======content================================-->
 <section id="content">
     <div class="col-md-4">
-        <form data-toggle="validator" role="form" action="scripts/addtravel.php" method="post"">
+        <form data-toggle="validator" role="form" class="newtravel-form" action="scripts/addtravel.php" method="post"">
             <div class='form-group'>
                 <label for='inputUsername' class='control-label'>Pseudo</label>
                 <input type='text' class='form-control' id='inputUsername' name='username' placeholder=<?php echo '"'.$_SESSION['username'].'"'?> disabled>
@@ -55,12 +55,14 @@ if(!isset($_SESSION['username'])) {
                 <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="departures" name="departure" placeholder="Ville de départ" required>
                 </select>
             </div>
+            <div class="error-search-dp bg-danger"></div>
 
             <div class="form-group">
                 <label class="control-label" for="arrivals">Arrivée</label>
                 <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrivals" name="arrival" placeholder="Ville d'arrivée" required>
                 </select>
             </div>
+            <div class="error-search-ar bg-danger"></div>
 
             <div class="form-group">
                 <label for="inputDate" class="control-label">Date de départ</label>
@@ -74,7 +76,8 @@ if(!isset($_SESSION['username'])) {
 
             <div class="form-group">
                 <label for="inputPrice" class="control-label">Prix du voyage (min: 10$, max: 100$)</label>
-                <input type="number" class="form-control" id="inputPrice" name="price" placeholder="10$" min="10" max="100" required>
+                <div class="input-group-addon">$</div>
+                <input type="number" class="form-control" id="inputPrice" name="price" placeholder="10" min="10" max="100" required>
             </div>
 
             <div class="form-group">

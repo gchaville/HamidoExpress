@@ -43,7 +43,7 @@ session_start ();
                 <button type="button" class="btn btn-primary search-button">Chercher</button>
 
             </form>
-
+            <div class="error-search bg-danger"></div>
             <br><br>
 
             <table class="table">
