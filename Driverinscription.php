@@ -2,7 +2,13 @@
 // On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
 session_start ();
 
-$member_page = "<DOCTYPE html>
+if(!isset($_SESSION['username'])) {
+    echo "Pas de compte";
+    header("Location:../scripts/logout.php");
+}
+?>
+
+<DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -19,22 +25,6 @@ $member_page = "<DOCTYPE html>
 
     <!-- Latest compiled and minified JavaScript -->
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
-    
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                type: 'post',
-                url: 'scripts/getuserinfos.php',
-                success: function(a) {
-                    var b = $.parseJSON(a);
-                    
-                    $.each(b,function (a,b) {
-                        $('#inputUsername').attr('value', b.Username.toString());
-                    })
-                }
-            }) 
-        })  
-    </script>    
 
 </head>
 
@@ -83,37 +73,37 @@ $member_page = "<DOCTYPE html>
         <form data-toggle='validator' role='form' action='scripts/adddriver.php' method='post''>
         <div class='form-group'>
             <label for='inputUsername' class='control-label'>Pseudo</label>
-            <input type='text' class='form-control' id='inputUsername' name='username' placeholder='Pseudo' disabled>
+            <input type='text' class='form-control' id='inputUsername' name='username' placeholder=<?php echo '"'.$_SESSION['username'].'"'?> disabled>
         </div>
 
         <div class='form-group'>
-            <label for='drivingYear' class='control-label'>Année de conduite</label>
-            <input type='text' class='form-control' id='drivingYear' name='drivingYear' placeholder='0' required>
+            <label for='drivingYearInput' class='control-label'>Année de conduite</label>
+            <input type='text' class='form-control' id='drivingYearInput' name='drivingYear' placeholder='0' required>
         </div>
 
         <div class='form-group'>
-            <label for='nbPassenger' class='control-label'>Nombre de passagers</label>
-            <input type='number' class='form-control' id='nbPassenger' name='nbPassenger' placeholder='0' required>
+            <label for='nbPassengerInput' class='control-label'>Nombre de passagers</label>
+            <input type='number' class='form-control' id='nbPassengerInput' name='nbPassenger' placeholder='0' required>
         </div>
 
         <div class='form-group'>
-            <label for='Smoking' class='control-label'>Auto fumeur?</label>
-            <input type='checkbox' id='Smoking' name='smoking' value=1>
+            <label for='SmokingInput' class='control-label'>Auto fumeur?</label>
+            <input type='checkbox' id='SmokingInput' name='smoking' value=1>
         </div>
 
         <div class='form-group'>
-            <label for='airConditioning' class='control-label'>Air climatisé?</label>
-            <input  type='checkbox' id='airConditioning' name='airConditioning' value=1>
+            <label for='airConditioningInput' class='control-label'>Air climatisé?</label>
+            <input  type='checkbox' id='airConditioningInput' name='airConditioning' value=1>
         </div>
 
         <div class='form-group'>
-            <label for='suitcase' class='control-label'>Grande valise?</label>
-            <input type='checkbox' id='suitcase' name='suitcase' value=1>
+            <label for='suitCaseInput' class='control-label'>Grande valise?</label>
+            <input type='checkbox' id='suitCaseInput' name='suitcase' value=1>
         </div>
 
         <div class='form-group'>
-            <label for='animals' class='control-label'>Animaux</label>
-            <input type='checkbox' id='animals' name='animals' value=1>
+            <label for='animalsInput' class='control-label'>Animaux</label>
+            <input type='checkbox' id='animalsInput' name='animals' value=1>
         </div>
 
         <div class='form-group'>
@@ -128,11 +118,4 @@ $member_page = "<DOCTYPE html>
 
 </footer>
 </body>
-</html>";
-
-// On récupère nos variables de session
-if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
-    echo $member_page;
-} else {
-    echo 'Les variables ne sont pas déclarées.';
-}
+</html>

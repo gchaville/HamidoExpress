@@ -107,10 +107,10 @@ CREATE TABLE `users` (
   `First_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `Last_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `Date_of_birth` date NOT NULL,
-  `Address` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
-  `Mail` varchar(32) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
+  `Address` text(250) COLLATE utf8_unicode_ci NOT NULL,
+  `Mail` varchar(50) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
   `Phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL UNIQUE,
-  `Pass_word` varchar(15) COLLATE utf8_unicode_ci NOT NULL UNIQUE
+  `Pass_word` varchar(250) COLLATE utf8_unicode_ci NOT NULL UNIQUE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --

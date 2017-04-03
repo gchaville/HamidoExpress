@@ -1,30 +1,24 @@
 <?php
 include("connect.php");
-$login_valide = "test";
-$pwd_valide = "testtest";
 
 if (isset($_POST['username']) && isset($_POST['pwd'])) {
 
-    $STMT=$PDO->query("SELECT Pass_word From users where username = '".$_POST['username']."'");
+    $Username = $_POST['username'];
 
-    $r = array();
+    $STMT=$PDO->query("SELECT Id, Pass_word From users where username = '$Username';");
 
-    while ($row = $STMT->fetch(PDO::FETCH_ASSOC)) {
-        $r[] = $row;
-    }
+    $row = $STMT->fetch(PDO::FETCH_ASSOC);
 
-    $pw = $r[0]['Pass_word'];
+    $UserId = $row['Id'];
+    $UserPWD = $row['Pass_word'];
 
-    print_r($r);
-
-    echo $pw;
-
-    if (password_verify($_POST['pwd'], $pw)) {
+    if (password_verify($_POST['pwd'], $UserPWD)) {
 
         session_start ();
 
-        $_SESSION['username'] = $_POST['username'];
-        $_SESSION['pwd'] = $pw;
+        $_SESSION['username'] = $Username;
+        $_SESSION['userid'] = $UserId;
+        $_SESSION['pwd'] = $UserPWD;
 
         header ('location: ../page_member.php');
     }
