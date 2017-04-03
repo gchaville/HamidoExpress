@@ -10,7 +10,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 <html>
     <head>
         <meta charset="utf-8">
-        <title>HamidoExpress - Compte Test</title>
+        <title>HamidoExpress - Profil</title>
         <link rel="stylesheet" href="css/styles.css">
     
         <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -32,37 +32,7 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 <?php include("header.php"); ?>
 <!--=======content================================-->
 <section id="content">
-        <?php
-        // On récupère nos variables de session
-        if (isset($_SESSION['username']) && isset($_SESSION['pwd'])) {
-            $Username = addslashes($_SESSION['username']);
-            $Password = addslashes($_SESSION['pwd']);
-
-            include("scripts/connect.php");
-
-            $STMT=$PDO->query("SELECT *
-								FROM `users`
-								WHERE users.Username = '$Username'
-								AND users.Pass_word = '$Password';");
-
-            $row = $STMT->fetch(PDO::FETCH_ASSOC);
-
-
-            echo "<ul class=\"list-group\">
-                  <li class=\"list-group-item\">Pseudo : ".$row['Username']."</li>
-                  <li class=\"list-group-item\">Prénom : ".$row['First_name']."</li>
-                  <li class=\"list-group-item\">Nom : ".$row['Last_name']."</li>
-                  <li class=\"list-group-item\">Date de naissance : ".$row['Date_of_birth']."</li>
-                  <li class=\"list-group-item\">Adresse postale : ".$row['Address']."</li>
-                  <li class=\"list-group-item\">Adresse courriel : ".$row['Mail']."</li>
-                  <li class=\"list-group-item\">Téléphone : ".$row['Phone']."</li>
-                  </ul>";
-        }
-        ?>
-    </ul>
-
-    <button type="button" class="btn btn-primary" onclick="location.href='Driverinscription.php'" >Configuration conducteur</button>
-    <button type="button" class="btn btn-primary" onclick="location.href='newtravel.php'" >Nouveau voyage</button>
+    <?php include("profile.php"); ?>
 </section>
 
 <!--=======footer=================================-->
