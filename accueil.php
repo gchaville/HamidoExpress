@@ -24,6 +24,10 @@ session_start ();
         <!--==============================header=================================-->
         <?php include("header.php"); ?>
 
+        <script>
+            document.getElementById("headerAccueil").classList.add('active');
+        </script>
+
         <h1>hola Qué tal</h1>
     </body>
 </html>

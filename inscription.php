@@ -23,6 +23,10 @@ session_start ();
 
     <body><!--==============================header=================================-->
     <?php include("header.php"); ?>
+
+    <script>
+        document.getElementById("headerInscription").classList.add('active');
+    </script>
         <!--=======content================================-->
         <section id="content">
             <div class="col-md-4">

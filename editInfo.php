@@ -47,6 +47,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 
     <body><!--==============================header=================================-->
         <?php include("header.php"); ?>
+
+        <script>
+            document.getElementById("headerParametres").classList.add('active');
+        </script>
         <!--=======content================================-->
         <section id="content">
             <div class="col-md-4">

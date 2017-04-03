@@ -25,6 +25,10 @@ session_start ();
 
     <body>
         <?php include("header.php"); ?>
+
+        <script>
+            document.getElementById("headerDeparts").classList.add('active');
+        </script>
         <!--=======content================================-->
         <section id="content">
             <form class="form-inline departure-search">

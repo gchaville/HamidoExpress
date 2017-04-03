@@ -30,6 +30,10 @@ if (!isset($_SESSION['username']) && !isset($_SESSION['pwd']))
 <body>
 <!--==============================header=================================-->
 <?php include("header.php"); ?>
+
+<script>
+    document.getElementById("headerProfil").classList.add('active');
+</script>
 <!--=======content================================-->
 <section id="content">
         <?php
