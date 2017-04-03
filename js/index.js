@@ -13,7 +13,7 @@ $(document).ready(function () {
                 $('.departures').html(""), $.each(b,function (a,b) {
                     $('.departures').append('<tr class="travel">' +
                         '<th scope="row">'+ b.Date +'</th>' +
-                        '<td>'+ b.Price + '</td>' +
+                        '<td>'+ b.Price + ' $</td>' +
                         '<td>'+ b.Places_Available + '</td>' +
                         '</tr>');
                 })
