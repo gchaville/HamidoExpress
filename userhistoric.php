@@ -90,7 +90,8 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
                     $tableTr .= "<td><button type=\"button\" id=\"" . $row['Id'] . "\" class=\"btn btn-primary cancel-booking-button\">Annuler</button></td>";
                 }
 
-                $tableTr .="</tr>";
+                $tableTr .="<input type=\"hidden\" name=\"travelid\" id=\"travelId\" value=\"".$row['Id']."\">
+                            </tr>";
                 echo $tableTr;
             }
         ?>

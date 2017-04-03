@@ -76,8 +76,10 @@ if(!isset($_SESSION['username'])) {
 
             <div class="form-group">
                 <label for="inputPrice" class="control-label">Prix du voyage (min: 10$, max: 100$)</label>
-                <div class="input-group-addon">$</div>
-                <input type="number" class="form-control" id="inputPrice" name="price" placeholder="10" min="10" max="100" required>
+                    <div class="input-group">
+                    <div class="input-group-addon">$</div>
+                    <input type="number" class="form-control" id="inputPrice" name="price" placeholder="10" min="10" max="100" required>
+                </div>
             </div>
 
             <div class="form-group">

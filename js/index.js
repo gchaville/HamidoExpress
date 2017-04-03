@@ -69,6 +69,21 @@ $(document).ready(function () {
         }
     });
 
+    $('.cancel-booking-button').click(function() {
+        $.ajax({
+            type: "post",
+            url: "scripts/cancelbooking.php",
+            data: {travelid: $(this).attr('id')},
+            success: function (a) {
+                console.log("yep");
+                window.location.replace("http://localhost/HamidoExpress/userhistoric.php");
+            }
+        })
+    });
+
+    $('.cancel-travel-button').click(function() {
+        console.log("CANCEL TRAVEL");
+    });
 
     function getDepartures() {
         $.ajax({
