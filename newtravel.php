@@ -1,8 +1,22 @@
+<?php
+// On démarre la session (ceci est indispensable dans toutes les pages de notre section membre)
+session_start ();
+
+if(!isset($_SESSION['username'])) {
+    echo "Pas de compte";
+    header("Location:../scripts/logout.php");
+} elseif (!isset($_SESSION['driverid'])) {
+    echo "Pas de compte conducteur";
+    echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='page_member.php'\" >Retour vers Profil</button>";
+    echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='Driverinscription.php'\" >Créer un profil conducteur</button>";
+}
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
-    <title>HamidoExpress - Inscription conducteur</title>
+    <title>HamidoExpress - Créer un nouveau voyage</title>
     <link rel='stylesheet' href='css/styles.css'>
 
     <script src='https://code.jquery.com/jquery-3.1.1.min.js' integrity='sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=' crossorigin='anonymous'></script>
@@ -17,22 +31,6 @@
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa' crossorigin='anonymous'></script>
 
     <script src="js/index.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            $.ajax({
-                type: 'post',
-                url: 'scripts/getuserinfos.php',
-                success: function(a) {
-                    var b = $.parseJSON(a);
-
-                    $.each(b,function (a,b) {
-                        $('#inputUsername').attr('value', b.Username.toString());
-                    })
-                }
-            })
-        })
-    </script>
 
 </head>
 
@@ -65,6 +63,7 @@
                         <ul class='dropdown-menu'>
                             <li><a href='page_member.php'>Profil</a></li>
                             <li><a href='userhistoric.php'>Historique</a></li>
+                            <li><a href='#'>Historique de voyage</a></li>
                             <li><a href='editInfo.php'>Paramètres</a></li>
                             <li role='separator' class='divider'></li>
                             <li><a href='scripts/logout.php'>Déconnexion</a></li>
@@ -81,17 +80,17 @@
         <form data-toggle="validator" role="form" action="scripts/addtravel.php" method="post"">
         <div class='form-group'>
             <label for='inputUsername' class='control-label'>Pseudo</label>
-            <input type='text' class='form-control' id='inputUsername' name='username' placeholder='Pseudo' disabled>
+            <input type='text' class='form-control' id='inputUsername' name='username' placeholder=<?php echo '"'.$_SESSION['username'].'"'?> disabled>
         </div>
 
         <div class="form-group">
-            <label class="sr-only" for="departures">Départ</label>
+            <label class="control-label" for="departures">Départ</label>
             <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="departures" name="departure" placeholder="Ville de départ" required>
             </select>
         </div>
 
         <div class="form-group">
-            <label class="sr-only" for="arrivals">Arrivée</label>
+            <label class="control-label" for="arrivals">Arrivée</label>
             <select class="form-control mb-2 mr-sm-2 mb-sm-0" id="arrivals" name="arrival" placeholder="Ville d'arrivée" required>
             </select>
         </div>
@@ -111,6 +110,7 @@
             <input type="number" class="form-control" id="Places_Available" name="Places_Available" placeholder="0" required>
         </div>
 
+        <input type="hidden" name="driverid" id="driveridInput" value=<?php echo '"'.$_SESSION['driverid'].'"'?>>
         <div class="form-group">
             <button type="button" class="btn btn-primary" onclick="location.href='index.php'" >Retour</button>
             <button type="submit" class="btn btn-primary">Envoyer</button>
