@@ -6,9 +6,10 @@ if(!isset($_SESSION['username'])) {
     echo "Pas de compte";
     header("Location:../scripts/logout.php");
 } elseif (!isset($_SESSION['driverid'])) {
-    echo "Pas de compte conducteur";
+    header ('location: page_member.php');
+    /*echo "Pas de compte conducteur";
     echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='page_member.php'\" >Retour vers Profil</button>";
-    echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='Driverinscription.php'\" >Créer un profil conducteur</button>";
+    echo "<button type=\"button\" class=\"btn btn-primary\" onclick=\"location.href='Driverinscription.php'\" >Créer un profil conducteur</button>";*/
 }
 ?>
 
@@ -112,7 +113,7 @@ if(!isset($_SESSION['username'])) {
 
         <input type="hidden" name="driverid" id="driveridInput" value=<?php echo '"'.$_SESSION['driverid'].'"'?>>
         <div class="form-group">
-            <button type="button" class="btn btn-primary" onclick="location.href='index.php'" >Retour</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='page_member.php'" >Retour</button>
             <button type="submit" class="btn btn-primary">Envoyer</button>
         </div>
         </form>
