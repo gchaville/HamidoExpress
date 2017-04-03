@@ -79,7 +79,7 @@ CREATE TABLE `travel` (
   `DriverId` int(5) NOT NULL,
   `DepartureId` int(5) NOT NULL,
   `ArrivalId` int(5) NOT NULL,
-  `Date` datetime NOT NULL,
+  `Date` date NOT NULL,
   `Price` int(3) NOT NULL,
   `Places_Available` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -143,7 +143,6 @@ ALTER TABLE `travel`
 -- Index pour la table `travel_supports_user`
 --
 ALTER TABLE `travel_supports_user`
-  ADD PRIMARY KEY (`TravelId`,`UserId`),
   ADD FOREIGN KEY (`TravelId`) REFERENCES `travel`(`Id`),
   ADD FOREIGN KEY (`UserId`) REFERENCES `users`(`Id`);
 

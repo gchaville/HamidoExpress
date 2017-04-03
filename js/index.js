@@ -11,25 +11,39 @@ $(document).ready(function () {
                 console.log(a);
                 var b = $.parseJSON(a);
                 $('.departures').html(""), $.each(b,function (a,b) {
-                    var line = '<tr class="travel">' + '<th scope="row">'+ b.Date +'</th>' + '<td>'+ b.Price + ' $</td>' + '<td>';
+                    var line = '<tr class="travel" value="'+b.Id+'">' + '<th scope="row">'+ b.Date +'</th>' + '<td>'+ b.Price + ' $</td>' + '<td>';
 
                     for ($i = 1; $i <= b.Places_Available; $i++) {
                         line += '<img alt="hello" src="images/stickman.png" width="30" height="30">';
                     }
 
                     line += '</td>' +
+                        '<td class="preferences" id="'+b.Id+'"></td>' +
                         '<td><button type="button" id="'+b.Id+'" class="btn btn-primary booking-button">Réserver</button></td>' +
-                        '<td></td>' +
                         '</tr>';
 
                     $('.departures').append(line);
 
                     if (b.Places_Available == 0)
                         $('#'+b.Id).addClass('disabled');
+
+                    $(".booking-button").click(function()
+                    {
+                        //console.log($('.departure-search').serializeArray());
+                        $.ajax({
+                            type: "post",
+                            url: "scripts/addbooking.php",
+                            data: {travelid: $(this).attr('id')},
+                            success: function (a) {
+                                console.log(a);
+                            }
+                        })
+                    });
                 })
             }
         })
     });
+
 
     function getDepartures() {
         $.ajax({
