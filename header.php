@@ -24,20 +24,32 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <?php
-
+                        $rightnav = "";
                         if(isset($_SESSION['username']))
-                            echo '<li class="dropdown">
+                        {
+                            if (!isset($_SESSION['driverid']))
+                                $rightnav .= '<li id="driverInscription"><a href="Driverinscription.php">Devenir conducteur</a></li>';
+                            else
+                                $rightnav .= '<li id="driverInscription"><a href="Driverinscription.php">Configurer conducteur</a></li>
+                                              <li id="newTravel"><a href="newtravel.php">Nouveau voyage</a></li>';
+
+                            $rightnav .= '<li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Compte<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li id="headerProfil"><a href="page_member.php">Profil</a></li>
-                                                <li id="headerHistorique"><a href="userhistoric.php">Historique</a></li>
-                                                <li id="headerParametres"><a href="editInfo.php">Paramètres</a></li>
+                                                <li id="headerHistoricPassenger"><a href="userhistoric.php">Voyages - Passager</a></li>';
+
+                            if (isset($_SESSION['driverid']))
+                                $rightnav .='   <li id="headerHistoricDriver"><a href="driverHistoric.php">Voyages - Conducteur</a></li>';
+
+                            $rightnav .=       '<li id="headerParametres"><a href="editInfo.php">Paramètres</a></li>
                                                 <li role="separator" class="divider"></li>
                                                 <li><a href="scripts/logout.php">Déconnexion</a></li>
                                             </ul>
                                         </li>';
-                        else
-                            echo '<li class="dropdown">
+                        }
+                        else {
+                            $rightnav = '<li class="dropdown">
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Connexion<span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <form class="navbar-form navbar-left" action="scripts/login.php" method="post">
@@ -50,6 +62,8 @@
                                             </ul>
                                         </li>
                                         <li id="headerInscription"><a href="inscription.php">Inscription</a></li>';
+                        }
+                        echo $rightnav;
                     ?>
                 </ul>
             </div><!-- /.navbar-collapse -->

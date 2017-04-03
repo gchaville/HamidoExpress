@@ -33,7 +33,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
 <?php include("header.php"); ?>
 
 <script>
-    document.getElementById("headerHistorique").classList.add('active');
+    document.getElementById("headerHistoricPassenger").classList.add('active');
 </script>
 <!--=======content================================-->
 <section id="content">
@@ -96,6 +96,7 @@ if (!isset($_SESSION['userid']) && !isset($_SESSION['pwd']))
         ?>
         </tbody>
     </table>
+    <button type="button" class="btn btn-primary" onclick="location.href='page_member.php'" >Retour</button>
 </section>
 
 <!--=======footer=================================-->

@@ -37,6 +37,10 @@ if(!isset($_SESSION['username'])) {
 
 <body><!--==============================header=================================-->
 <?php include("header.php"); ?>
+<script>
+    document.getElementById("newTravel").classList.add('active');
+</script>
+
 <!--=======content================================-->
 <section id="content">
     <div class="col-md-4">

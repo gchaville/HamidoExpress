@@ -32,6 +32,9 @@ elseif (!isset($_SESSION['driverid']))
 
 <?php include("header.php"); ?>
 
+<script>
+    document.getElementById("headerHistoricDriver").classList.add('active');
+</script>
 <!--=======content================================-->
 <section id="content">
     <table class="table">
